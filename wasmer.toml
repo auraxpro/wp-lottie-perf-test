@@ -23,14 +23,19 @@ wasi = "0.2.0"
 name = "serve"
 module = "wp-lottie-perf-test"
 
-# WordPress configuration
+# WordPress configuration - explicit detection
 [package.metadata.wapm]
 abi = "wasi"
+# Explicitly mark as WordPress
+runtime = "php"
+framework = "wordpress"
 
 # WordPress web server configuration
 [package.metadata.web]
 # WordPress entry point
 index = "index.php"
+# Explicitly set as PHP application
+type = "php"
 
 # WordPress-specific MIME types
 [package.metadata.web.mime-types]
@@ -75,3 +80,8 @@ WP_ENV = "production"
 WP_DEBUG = "false"
 WP_DEBUG_LOG = "false"
 WP_DEBUG_DISPLAY = "false"
+# WordPress database settings
+DB_NAME = "wp_lottie_perf_test"
+DB_USER = "wp_user"
+DB_PASSWORD = "wp_password"
+DB_HOST = "localhost"
