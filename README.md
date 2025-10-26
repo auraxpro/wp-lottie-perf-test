@@ -1,10 +1,10 @@
-# Lottie Performance Test — Tipalti Finance AI Replica
+# WordPress Lottie Performance Test — Tipalti Finance AI Replica
 
-🎯 **Goal:** Rebuild the Tipalti Finance AI landing page (front-end only) with identical layout, typography, and assets — but experiment with 4 different Lottie integration strategies to benchmark performance impact.
+🎯 **Goal:** Rebuild the Tipalti Finance AI landing page as a WordPress theme with identical layout, typography, and assets — but experiment with 4 different Lottie integration strategies to benchmark performance impact.
 
 ## 🧭 PROJECT SPECIFICATION
 
-This project creates an exact front-end replica of [Tipalti's Finance AI page](https://tipalti.com/en-eu/accounts-payable-software/finance-ai/) with 4 different Lottie integration modes for performance comparison.
+This project creates an exact front-end replica of [Tipalti's Finance AI page](https://tipalti.com/en-eu/accounts-payable-software/finance-ai/) as a **WordPress theme** with 4 different Lottie integration modes for performance comparison.
 
 ### ✅ Requirements Met
 
@@ -18,8 +18,8 @@ This project creates an exact front-end replica of [Tipalti's Finance AI page](h
 
 | Area | Implementation |
 |------|----------------|
-| **Framework** | Pure HTML, CSS, JS (no React/WP runtime) |
-| **Hosting** | Wasmer.io (static site) |
+| **Framework** | WordPress Theme (PHP, HTML, CSS, JS) |
+| **Hosting** | Wasmer.io (WordPress stack) |
 | **Editor** | Cursor (VSCode AI) |
 | **Version Control** | GitHub repo `wp-lottie-perf-test` |
 | **Assets** | 10 `.lottie` files + Vimeo poster |
@@ -31,35 +31,42 @@ This project creates an exact front-end replica of [Tipalti's Finance AI page](h
 ```
 wp-lottie-perf-test/
 │
-├── assets/
-│   ├── lottie/                     # 10 .lottie animations
-│   │   ├── approval-chains-and-audit-trail.lottie
-│   │   ├── bill-approvers-agent.lottie
-│   │   ├── duplicate-bill-detection.lottie
-│   │   ├── erp-sync-resolution-agent.lottie
-│   │   ├── invoice-capture-agent-1.lottie
-│   │   ├── invoice-capture-agent-2.lottie
-│   │   ├── po-matching-agent.lottie
-│   │   ├── po-request-agent.lottie
-│   │   ├── scan-expenses-receipt-agent.lottie
-│   │   └── two-and-three-way-po-matching.lottie
-│   ├── js/
-│   │   ├── lottie-global.js        # CDN immediate load
-│   │   ├── lottie-defer.js         # Local deferred load  
-│   │   ├── lottie-lazy.js          # Intersection Observer
-│   │   └── lottie-canvas.js        # Canvas renderer
-│   └── css/
-│       ├── reset.css               # CSS reset
-│       └── style.css               # Main styles
+├── wp-content/
+│   └── themes/
+│       └── lottie-perf-test/           # WordPress theme
+│           ├── assets/
+│           │   ├── lottie/             # 10 .lottie animations
+│           │   │   ├── approval-chains-and-audit-trail.lottie
+│           │   │   ├── bill-approvers-agent.lottie
+│           │   │   ├── duplicate-bill-detection.lottie
+│           │   │   ├── erp-sync-resolution-agent.lottie
+│           │   │   ├── invoice-capture-agent-1.lottie
+│           │   │   ├── invoice-capture-agent-2.lottie
+│           │   │   ├── po-matching-agent.lottie
+│           │   │   ├── po-request-agent.lottie
+│           │   │   ├── scan-expenses-receipt-agent.lottie
+│           │   │   └── two-and-three-way-po-matching.lottie
+│           │   ├── js/
+│           │   │   ├── lottie-global.js        # CDN immediate load
+│           │   │   ├── lottie-defer.js          # Local deferred load  
+│           │   │   ├── lottie-lazy.js          # Intersection Observer
+│           │   │   └── lottie-canvas.js        # Canvas renderer
+│           │   └── css/
+│           │       ├── reset.css               # CSS reset
+│           │       └── style.css              # Main styles
+│           ├── functions.php                   # Theme functions
+│           ├── style.css                       # Theme stylesheet
+│           ├── index.php                       # Main template
+│           ├── header.php                     # Header template
+│           ├── footer.php                     # Footer template
+│           ├── page-global.php                # Global CDN test page
+│           ├── page-defer.php                  # Deferred test page
+│           ├── page-lazy.php                  # Lazy loading test page
+│           └── page-canvas.php                # Canvas test page
 │
-├── index.html                      # Mode selector homepage
-├── finance-ai-global.html          # Test 1: CDN load
-├── finance-ai-defer.html           # Test 2: Local defer
-├── finance-ai-lazy.html            # Test 3: Lazy-load  
-├── finance-ai-canvas.html          # Test 4: Canvas render
-│
-├── README.md                       # This documentation
-└── wasmer.toml                     # Deployment config
+├── index.php                      # WordPress entry point
+├── README.md                      # This documentation
+└── wasmer.toml                    # WordPress deployment config
 ```
 
 ## 🧠 4 PERFORMANCE MODES

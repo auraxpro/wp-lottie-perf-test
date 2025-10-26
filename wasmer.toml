@@ -1,7 +1,7 @@
 [package]
 name = "wp-lottie-perf-test"
 version = "1.0.0"
-description = "Lottie Performance Test - Tipalti Finance AI Replica with 4 integration strategies"
+description = "WordPress Lottie Performance Test - Tipalti Finance AI Replica with 4 integration strategies"
 license = "MIT"
 readme = "README.md"
 
@@ -14,7 +14,7 @@ abi = "wasi"
 wasi = "0.2.0"
 
 [fs]
-# Include all necessary files for the static site
+# Include all necessary files for the WordPress site
 "/" = "."
 
 [dependencies]
@@ -23,17 +23,18 @@ wasi = "0.2.0"
 name = "serve"
 module = "wp-lottie-perf-test"
 
-# Static file serving configuration
+# WordPress configuration
 [package.metadata.wapm]
 abi = "wasi"
 
-# Web server configuration for static hosting
+# WordPress web server configuration
 [package.metadata.web]
-# Serve index.html as the default page
-index = "index.html"
+# WordPress entry point
+index = "index.php"
 
-# MIME type mappings
+# WordPress-specific MIME types
 [package.metadata.web.mime-types]
+".php" = "application/x-httpd-php"
 ".html" = "text/html"
 ".css" = "text/css"
 ".js" = "application/javascript"
@@ -52,16 +53,25 @@ index = "index.html"
 ".ttf" = "font/ttf"
 ".eot" = "application/vnd.ms-fontobject"
 
-# Cache headers for performance
+# WordPress-specific headers
 [package.metadata.web.headers]
 # Cache static assets for 1 year
-"assets/*" = { "Cache-Control" = "public, max-age=31536000, immutable" }
-# Cache HTML files for 1 hour
-"*.html" = { "Cache-Control" = "public, max-age=3600" }
-# Security headers
+"wp-content/themes/*/assets/*" = { "Cache-Control" = "public, max-age=31536000, immutable" }
+# Cache WordPress files appropriately
+"wp-content/uploads/*" = { "Cache-Control" = "public, max-age=31536000" }
+"wp-content/themes/*/*.css" = { "Cache-Control" = "public, max-age=86400" }
+"wp-content/themes/*/*.js" = { "Cache-Control" = "public, max-age=86400" }
+# Security headers for WordPress
 "*" = { 
     "X-Content-Type-Options" = "nosniff",
-    "X-Frame-Options" = "DENY",
+    "X-Frame-Options" = "SAMEORIGIN",
     "X-XSS-Protection" = "1; mode=block",
     "Referrer-Policy" = "strict-origin-when-cross-origin"
 }
+
+# WordPress environment variables
+[package.metadata.web.env]
+WP_ENV = "production"
+WP_DEBUG = "false"
+WP_DEBUG_LOG = "false"
+WP_DEBUG_DISPLAY = "false"
