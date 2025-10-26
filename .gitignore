@@ -1,33 +1,30 @@
-# Wordpress - ignore core, configuration, examples, uploads and logs.
-# https://github.com/github/gitignore/blob/main/WordPress.gitignore
+# WordPress Lottie Performance Test - Custom .gitignore
+# Based on WordPress.gitignore but customized for our project
 
-# Core
-#
-# Note: if you want to stage/commit WP core files
-# you can delete this whole section/until Configuration.
+# WordPress Core Files (ignore these)
 /wp-admin/
-/wp-content/index.php
-/wp-content/languages
-/wp-content/plugins/index.php
-/wp-content/themes/index.php
 /wp-includes/
-/index.php
-/license.txt
-/readme.html
 /wp-*.php
 /xmlrpc.php
+/license.txt
+/readme.html
 
-# Configuration
+# WordPress Configuration (ignore sensitive config)
 wp-config.php
 
-# Example themes
+# WordPress Default Themes (ignore these)
 /wp-content/themes/twenty*/
+/wp-content/themes/index.php
 
-# Example plugin
+# WordPress Default Plugins (ignore these)
 /wp-content/plugins/hello.php
+/wp-content/plugins/index.php
 
-# Uploads
+# WordPress Uploads (ignore user uploads)
 /wp-content/uploads/
+
+# WordPress Languages (ignore translations)
+/wp-content/languages/
 
 # Log files
 *.log
@@ -35,14 +32,52 @@ wp-config.php
 # htaccess
 /.htaccess
 
-# All plugins
-#
-# Note: If you wish to whitelist plugins,
-# uncomment the next line
-#/wp-content/plugins
+# OS Files
+.DS_Store
+Thumbs.db
 
-# All themes
-#
-# Note: If you wish to whitelist themes,
-# uncomment the next line
-#/wp-content/themes
+# IDE Files
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Node modules (if any)
+node_modules/
+
+# Backup files
+backup-current/
+*.backup
+
+# Temporary files
+*.tmp
+*.temp
+
+# BUT KEEP OUR CUSTOM THEME AND ASSETS
+# Our custom Lottie performance test theme
+!/wp-content/themes/lottie-perf-test/
+!/wp-content/themes/lottie-perf-test/**
+!/wp-content/themes/lottie-perf-test/assets/
+!/wp-content/themes/lottie-perf-test/assets/**
+
+# Keep our project files
+!/README.md
+!/wasmer.toml
+!/index.php
+
+# Keep our Lottie files specifically
+!/wp-content/themes/lottie-perf-test/assets/lottie/
+!/wp-content/themes/lottie-perf-test/assets/lottie/*.lottie
+
+# Keep our JavaScript files
+!/wp-content/themes/lottie-perf-test/assets/js/
+!/wp-content/themes/lottie-perf-test/assets/js/*.js
+
+# Keep our CSS files
+!/wp-content/themes/lottie-perf-test/assets/css/
+!/wp-content/themes/lottie-perf-test/assets/css/*.css
+
+# Keep our PHP template files
+!/wp-content/themes/lottie-perf-test/*.php
+!/wp-content/themes/lottie-perf-test/functions.php
+!/wp-content/themes/lottie-perf-test/style.css
