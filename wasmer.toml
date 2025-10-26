@@ -1,0 +1,67 @@
+[package]
+name = "wp-lottie-perf-test"
+version = "1.0.0"
+description = "Lottie Performance Test - Tipalti Finance AI Replica with 4 integration strategies"
+license = "MIT"
+readme = "README.md"
+
+[[module]]
+name = "wp-lottie-perf-test"
+source = "."
+abi = "wasi"
+
+[module.interfaces]
+wasi = "0.2.0"
+
+[fs]
+# Include all necessary files for the static site
+"/" = "."
+
+[dependencies]
+
+[command]
+name = "serve"
+module = "wp-lottie-perf-test"
+
+# Static file serving configuration
+[package.metadata.wapm]
+abi = "wasi"
+
+# Web server configuration for static hosting
+[package.metadata.web]
+# Serve index.html as the default page
+index = "index.html"
+
+# MIME type mappings
+[package.metadata.web.mime-types]
+".html" = "text/html"
+".css" = "text/css"
+".js" = "application/javascript"
+".mjs" = "application/javascript"
+".json" = "application/json"
+".lottie" = "application/json"
+".svg" = "image/svg+xml"
+".png" = "image/png"
+".jpg" = "image/jpeg"
+".jpeg" = "image/jpeg"
+".webp" = "image/webp"
+".gif" = "image/gif"
+".ico" = "image/x-icon"
+".woff" = "font/woff"
+".woff2" = "font/woff2"
+".ttf" = "font/ttf"
+".eot" = "application/vnd.ms-fontobject"
+
+# Cache headers for performance
+[package.metadata.web.headers]
+# Cache static assets for 1 year
+"assets/*" = { "Cache-Control" = "public, max-age=31536000, immutable" }
+# Cache HTML files for 1 hour
+"*.html" = { "Cache-Control" = "public, max-age=3600" }
+# Security headers
+"*" = { 
+    "X-Content-Type-Options" = "nosniff",
+    "X-Frame-Options" = "DENY",
+    "X-XSS-Protection" = "1; mode=block",
+    "Referrer-Policy" = "strict-origin-when-cross-origin"
+}
